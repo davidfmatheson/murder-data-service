@@ -3083,3 +3083,4 @@ INSERT INTO county (id,name,state_id) VALUES (3078,'Washakie',50);
 INSERT INTO county (id,name,state_id) VALUES (3079,'Weston',50);
 
 ALTER TABLE county MODIFY COLUMN id integer NOT NULL AUTO_INCREMENT;
+ALTER TABLE county ADD COLUMN fips_county integer AFTER name;

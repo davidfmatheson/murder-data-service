@@ -9,5 +9,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface AgencyRepository extends CrudRepository<Agency, Long> {
 	List<Agency> findByCountyNameAndCountyStateAbbreviation(String countyName, String stateAbbreviation);
 	List<Agency> findByCountyStateAbbreviation(String stateAbbreviation);
-	List<Agency> findByCounty(County county);
+	List<Agency> findByCountyOrderByName(County county);
 }

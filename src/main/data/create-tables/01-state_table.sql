@@ -62,3 +62,4 @@ INSERT INTO state (id,name,abbreviation,country,type,sort,status,occupied,notes,
 INSERT INTO state (id,name,abbreviation,country,type,sort,status,occupied,notes,fips_state,assoc_press,standard_federal_region,census_region,census_region_name,census_division,census_division_name,circuit_court,numeric_state_code) VALUES ('57','Panama Canal Zone','CZ','USA','territory','20','historic','occupied','Independent in 1999, no longer administered by US','','','IX','','','','','9','52');
 
 ALTER TABLE state MODIFY COLUMN id integer NOT NULL AUTO_INCREMENT;
+INSERT INTO state (name,abbreviation,country,type,sort,status,occupied,notes,fips_state,assoc_press,standard_federal_region,census_region,census_region_name,census_division,census_division_name,circuit_court) VALUES ('U.S. Minor Outlying Islands','UM','USA','minor','20','current','occupied','Owned and managed by The Nature Conservatory','74','','','','','','','');

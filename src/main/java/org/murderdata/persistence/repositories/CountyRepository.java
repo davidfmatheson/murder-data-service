@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CountyRepository extends CrudRepository<County, Long> {
 	List<County> findByStateAbbreviation(String abbreviation);
-	List<County> findByState(State state);
+	List<County> findByStateOrderByName(State state);
 }

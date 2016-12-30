@@ -40,7 +40,7 @@ public class CountyController {
 
 	@RequestMapping(value = "/{id}/agencies", method = RequestMethod.GET)
 	public List<Agency> getAgencies(County county) {
-		return this.agencyRepository.findByCounty(county);
+		return this.agencyRepository.findByCountyOrderByName(county);
 	}
 
 }

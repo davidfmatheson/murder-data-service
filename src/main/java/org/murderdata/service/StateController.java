@@ -39,7 +39,7 @@ public class StateController {
 
 	@RequestMapping(value = "/{id}/counties", method = RequestMethod.GET)
 	public List<County> getCounties(State state) {
-		return this.countyRepository.findByState(state);
+		return this.countyRepository.findByStateOrderByName(state);
 	}
 	
 }
