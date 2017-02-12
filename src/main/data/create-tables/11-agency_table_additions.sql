@@ -9542,3 +9542,11 @@ INSERT INTO agency (name, originating_agency_id, county_id) VALUES ('Wamsutter',
 INSERT INTO agency (name, originating_agency_id, county_id) VALUES ('Lyman', 'WY02103', 3077);
 INSERT INTO agency (name, originating_agency_id, county_id) VALUES ('Upton', 'WY02302', 3079);
 INSERT INTO agency (name, originating_agency_id, county_id) VALUES ('Wyoming Highway Patrol', 'WYWHP00', 3067);
+
+-- VA08701 is part of Franklin City, not Franklin County
+UPDATE clearance_rate SET agency_id = 21771 WHERE agency_id = 11917;
+DELETE FROM agency WHERE originating_agency_id = 'VA08701' AND county_id = 2804;
+-- VA10850 is part of Franklin City, not Franklin County
+UPDATE clearance_rate SET agency_id = 21789 WHERE agency_id = 11974;
+DELETE FROM agency WHERE originating_agency_id = 'VA10850' AND county_id = 2804;
+

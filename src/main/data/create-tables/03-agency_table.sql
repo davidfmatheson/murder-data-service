@@ -12893,3 +12893,4 @@ INSERT INTO agency (id,name,originating_agency_id,county_id) VALUES (12888,'Yell
 INSERT INTO agency (id,name,originating_agency_id,county_id) VALUES (12889,'Wind River Agency','WYDI050',3063);
 
 ALTER TABLE agency MODIFY COLUMN id integer NOT NULL AUTO_INCREMENT;
+ALTER TABLE agency ADD INDEX originating_agency_id (originating_agency_id);
