@@ -21,6 +21,15 @@ public class County {
 	@ManyToOne
 	private State state;
 	
+	public County() {
+		
+	}
+	
+	public County(long id) {
+		this();
+		this.id = id;
+	}
+	
 	public long getId() {
 		return id;
 	}

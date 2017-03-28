@@ -21,6 +21,15 @@ public class Agency {
 	@ManyToOne
 	private County county;
 	
+	public Agency() {
+		
+	}
+	
+	public Agency(long id) {
+		this();
+		this.id = id;
+	}
+	
 	public long getId() {
 		return id;
 	}

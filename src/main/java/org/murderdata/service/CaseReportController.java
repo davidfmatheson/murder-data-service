@@ -1,17 +1,19 @@
 package org.murderdata.service;
 
+import static org.murderdata.persistence.specifications.CaseReportSpecifications.agencyIs;
+import static org.murderdata.persistence.specifications.CaseReportSpecifications.countyIs;
+import static org.murderdata.persistence.specifications.CaseReportSpecifications.identity;
+import static org.murderdata.persistence.specifications.CaseReportSpecifications.yearIs;
 import static org.springframework.data.jpa.domain.Specifications.where;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import javax.annotation.Resource;
 
 import org.murderdata.persistence.model.Agency;
 import org.murderdata.persistence.model.CaseReport;
+import org.murderdata.persistence.model.County;
 import org.murderdata.persistence.repositories.CaseReportRepository;
-import org.murderdata.persistence.specifications.CaseReportSpecifications;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,24 +30,24 @@ public class CaseReportController {
 	@RequestMapping(method = RequestMethod.GET)
 	public List<CaseReport> getAll(
 			@RequestParam(name = "year", required = false) Integer year,
-			@RequestParam(name = "agencyId", required = false) Long agencyId
+			@RequestParam(name = "agencyId", required = false) Long agencyId,
+			@RequestParam(name = "countyId", required = false) Long countyId
 			) {
-		Specification<CaseReport> specification = where(CaseReportSpecifications.identity());
+		Specification<CaseReport> specification = where(identity());
 		
 		if (year != null) {
-			specification = where(specification).and(CaseReportSpecifications.yearIs(year));
+			specification = where(specification).and(yearIs(year));
 		}
 		
 		if (agencyId != null) {
-			Agency agency = new Agency();
-			agency.setId(agencyId.longValue());
-			specification = where(specification).and(CaseReportSpecifications.agencyIs(agency));
+			specification = where(specification).and(agencyIs(new Agency(agencyId.longValue())));
 		}
 		
-		Iterable<CaseReport> modelsIterable = this.caseReportRepository.findAll(specification);
-		List<CaseReport> models = StreamSupport.stream(modelsIterable.spliterator(), false)
-		                .collect(Collectors.toList());	
-		return models;
+		if (countyId != null) {
+			specification = where(specification).and(countyIs(new County(countyId.longValue())));
+		}
+
+		return this.caseReportRepository.findAll(specification);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
