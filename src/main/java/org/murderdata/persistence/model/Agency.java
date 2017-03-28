@@ -18,6 +18,9 @@ public class Agency {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "originating_agency_id")
+	private String originatingAgencyId;
+	
 	@ManyToOne
 	private County county;
 	
@@ -52,6 +55,14 @@ public class Agency {
 
 	public void setCounty(County county) {
 		this.county = county;
+	}
+
+	public String getOriginatingAgencyId() {
+		return originatingAgencyId;
+	}
+
+	public void setOriginatingAgencyId(String originatingAgencyId) {
+		this.originatingAgencyId = originatingAgencyId;
 	}
 
 }

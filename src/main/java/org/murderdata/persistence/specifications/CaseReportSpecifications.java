@@ -12,6 +12,8 @@ import org.murderdata.persistence.model.Agency_;
 import org.murderdata.persistence.model.CaseReport;
 import org.murderdata.persistence.model.CaseReport_;
 import org.murderdata.persistence.model.County;
+import org.murderdata.persistence.model.County_;
+import org.murderdata.persistence.model.State;
 import org.springframework.data.jpa.domain.Specification;
 
 public class CaseReportSpecifications {
@@ -65,6 +67,17 @@ public class CaseReportSpecifications {
 			@Override
 			public Predicate toPredicate(Root<CaseReport> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				return builder.equal(root.join(CaseReport_.agency).get(Agency_.county), county);
+			}
+			
+		};
+	}
+
+	public static Specification<CaseReport> stateIs(State state) {
+		return new Specification<CaseReport>() {
+
+			@Override
+			public Predicate toPredicate(Root<CaseReport> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+				return builder.equal(root.join(CaseReport_.agency).join(Agency_.county).get(County_.state), state);
 			}
 			
 		};

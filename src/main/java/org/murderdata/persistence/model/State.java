@@ -20,6 +20,15 @@ public class State {
 	@Column(name = "abbreviation")
 	private String abbreviation;
 
+	public State() {
+		
+	}
+	
+	public State(long id) {
+		this();
+		this.id = id;
+	}
+	
 	public long getId() {
 		return id;
 	}
