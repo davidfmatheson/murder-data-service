@@ -1,4 +1,4 @@
-#!/opt/local/bin/perl
+#!/usr/bin/env perl
 use strict;
 use warnings;
 
@@ -73,10 +73,10 @@ while ( my $line = <$data> ) {
 		my $fips_county = substr($state_county_fips, 2);
 		$fips_county += 0;
 
-		# my $sth = $dbh->prepare("
-		#	SELECT agency.id, county.id, state.id FROM agency, county, state WHERE agency.county_id = county.id AND county.state_id = state.id AND agency.originating_agency_id = ? AND county.fips_county = ? AND state.fips_state = ?");
 		my $sth = $dbh->prepare("
-			SELECT agency.id, county.id, state.id FROM agency, county, state WHERE agency.county_id = county.id AND county.state_id = state.id AND agency.originating_agency_id = ?");
+			SELECT agency.id, county.id, state.id FROM agency, county, state WHERE agency.county_id = county.id AND county.state_id = state.id AND agency.originating_agency_id = ? AND county.fips_county = ? AND state.fips_state = ?");
+		#my $sth = $dbh->prepare("
+		#	SELECT agency.id, county.id, state.id FROM agency, county, state WHERE agency.county_id = county.id AND county.state_id = state.id AND agency.originating_agency_id = ?");
 		$sth->execute($ori);
 
 		warn "Problem in retrieving results", $sth->errstr(), "\n"
